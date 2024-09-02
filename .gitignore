@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CocktailApp/bin/Debug/net8.0
+/CocktailApp/obj
+/.vs
+/CocktailApp.Tests/bin
+/CocktailApp.Tests/obj
