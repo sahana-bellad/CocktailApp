@@ -7,14 +7,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var cocktailClientSettings = builder.Configuration.GetSection("CocktailClientSettings");
+var funTranslationsSettings = builder.Configuration.GetSection("FunTranslationsSettings");
+
+var cocktailClientBaseAddress = cocktailClientSettings["BaseAddress"] ?? "https://www.thecocktaildb.com/api/json/v1/1/";
+var funTranslationsBaseAddress = funTranslationsSettings["BaseAddress"] ?? "https://api.funtranslations.com/";
+
 builder.Services.AddHttpClient("cocktailClient", client =>
 {
-    client.BaseAddress = new Uri("https://www.thecocktaildb.com/api/json/v1/1/");
+    client.BaseAddress = new Uri(cocktailClientBaseAddress);
 });
 
 builder.Services.AddHttpClient("translateClient", client =>
 {
-    client.BaseAddress = new Uri("https://api.funtranslations.com/");
+    client.BaseAddress = new Uri(funTranslationsBaseAddress);
 });
 
 builder.Services.AddScoped<ICocktailService, CocktailService>();

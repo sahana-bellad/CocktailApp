@@ -17,7 +17,7 @@ public class CocktailController : ControllerBase
     [HttpGet("random-cocktail")]
     public async Task<IActionResult> GetRandomCocktail([FromQuery] string language = "sith")
     {
-        if (language.ToLower() != "sith")
+        if (!string.Equals(language, "sith", StringComparison.OrdinalIgnoreCase))
         {
             return BadRequest("Only 'sith' language is supported.");
         }
